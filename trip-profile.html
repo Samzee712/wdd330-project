@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trip Profile - Outdoor Adventure Planner</title>
+  <link rel="icon" href="images/favicon.ico">
+  <link rel="stylesheet" href="style/style.css" />
+  <script type="module" src="script/nav.js"></script>
+  <script type="module" src="script/trip-profile.js"></script>
+</head>
+<body>
+  <!-- Loading overlay and back-to-top -->
+  <div id="loadingOverlay" class="loading-overlay hidden"><div class="spinner"></div></div>
+  <button id="backToTop" class="back-to-top hidden" aria-label="Back to top">↑</button>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-logo">
+        <a href="index.html">Outdoor Adventure Planner</a>
+      </div>
+      <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">☰ Menu</button>
+      <nav id="mainNav" class="site-nav">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="search-results.html">Search</a></li>
+          <li><a href="trip-profile.html">Trip Profile</a></li>
+          <li><a href="itinerary.html">Itinerary</a></li>
+          <li><a href="gear-list.html">Gear List</a></li>
+          <li><a href="profile.html">My Profile</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Alert -->
+    <section id="tripProfileSection">
+      <h1>Trip Profile</h1>
+      <form id="tripProfileForm">
+        <div>
+          <label for="tripName">Trip Name:</label>
+          <input type="text" id="tripName" placeholder="e.g., Summer Hiking Trip" required />
+        </div>
+        <div>
+          <label for="tripStartDate">Start Date:</label>
+          <input type="date" id="tripStartDate" required />
+        </div>
+        <div>
+          <label for="tripEndDate">End Date:</label>
+          <input type="date" id="tripEndDate" required />
+        </div>
+        <div>
+          <label for="groupSize">Group Size:</label>
+          <input type="number" id="groupSize" min="1" value="1" required />
+        </div>
+        <div>
+          <label for="skillLevel">Skill Level:</label>
+          <select id="skillLevel" required>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+          </select>
+        </div>
+        <div>
+          <label>Selected Activities:</label>
+          <ul id="selectedActivitiesList">
+            <!-- Populated from localStorage 'tripActivities' -->
+          </ul>
+          <p>If no activities listed, please add activities via the Activity Detail page.</p>
+        </div>
+        <button type="submit">Save Trip Profile</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>&copy; 2025 Outdoor Adventure Planner</p>
+      <nav class="footer-nav">
+        <a href="index.html">Home</a> |
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "alert1",
+    "message": "🔥 Trail closures due to wildfires in Yosemite.",
+    "background": "darkred",
+    "color": "white"
+  },
+  {
+    "id": "alert2",
+    "message": "🌤️ Perfect weekend to plan a hike!",
+    "background": "darkgreen",
+    "color": "white"
+  }
+]

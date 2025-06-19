@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search Results - Outdoor Adventure Planner</title>
+  <link rel="icon" href="images/favicon.ico">
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="style/style.css" />
+  <!-- Leaflet CSS: load here -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  
+</head>
+<body>
+  <!-- Loading overlay and back-to-top -->
+  <div id="loadingOverlay" class="loading-overlay hidden"><div class="spinner"></div></div>
+  <button id="backToTop" class="back-to-top hidden" aria-label="Back to top">↑</button>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-logo">
+        <a href="index.html">Outdoor Adventure Planner</a>
+      </div>
+      <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">☰ Menu</button>
+      <nav id="mainNav" class="site-nav">
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="search-results.html">Search</a></li>
+          <li><a href="trip-profile.html">Trip Profile</a></li>
+          <li><a href="itinerary.html">Itinerary</a></li>
+          <li><a href="gear-list.html">Gear List</a></li>
+          <li><a href="profile.html">My Profile</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="search-results">
+      <h2 id="resultsTitle">Search Results</h2>
+      <div id="filters">
+        <label for="distanceFilter">Distance Filter (km):</label>
+        <input type="range" id="distanceFilter" min="0" max="100" value="50">
+      </div>
+      <div id="activityGrid" class="fade-in">
+        <!-- Populated by adventure.js -->
+      </div>
+      <div id="map" style="height: 400px; width: 100%; margin-top: 1rem;"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>&copy; 2025 Outdoor Adventure Planner</p>
+      <nav class="footer-nav">
+        <a href="index.html">Home</a> |
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Leaflet JS: must load before adventure.js so that `L` is defined -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Module script: adventure.js references `L` -->
+  <script type="module" src="script/adventure.js"></script>
+  <script type="module">
+  import { initNav } from './script/nav.js';
+  document.addEventListener('DOMContentLoaded', () => {
+    initNav();
+  });
+</script>
+</body>
+</html>

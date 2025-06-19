@@ -1,0 +1,627 @@
+/* ==========================
+   Global & Reset
+   ========================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #FAFAFA;
+  color: #212121;
+  line-height: 1.6;
+  position: relative; /* for aria-busy if needed */
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ==========================
+   Header & Navigation
+   ========================== */
+.site-header {
+  background-color: #2E7D32;
+  color: #FAFAFA;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Logo / site title */
+.site-logo a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #FAFAFA;
+  text-decoration: none;
+}
+
+/* Nav toggle button: hidden on desktop */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #FAFAFA;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Navigation styling */
+.site-nav {
+  display: flex;
+}
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-list li a {
+  color: #FAFAFA;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  display: block;
+}
+
+/* Hover and active link */
+.nav-list li a:hover,
+.nav-list li a:focus,
+.nav-list li a.active {
+  background-color: #FFCA28;
+  color: #212121;
+}
+
+/* ==========================
+   Responsive: mobile nav collapse
+   ========================== */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+  .site-nav {
+    width: 100%;
+    display: none;
+    margin-top: 0.5rem;
+  }
+  .site-nav.show {
+    display: block;
+  }
+  .nav-list {
+    flex-direction: column;
+    gap: 0;
+  }
+  .nav-list li a {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid rgba(255,255,255,0.2);
+  }
+}
+
+/* ==========================
+   Main Container
+   ========================== */
+main {
+  max-width: 1000px;
+  margin: 1rem auto;
+  padding: 0 1rem;
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 0 0.75rem;
+  }
+}
+
+/* Headings */
+h1, h2, h3 {
+  font-family: 'Montserrat', sans-serif;
+  color: #2E7D32;
+  margin-top: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Paragraphs and lists */
+p, li {
+  font-family: 'Open Sans', sans-serif;
+  color: #212121;
+  margin-bottom: 1rem;
+}
+
+/* ==========================
+   Buttons (global)
+   ========================== */
+button,
+input[type="submit"],
+input[type="button"] {
+  background-color: #2E7D32;
+  color: #FAFAFA;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+  background-color: #FFCA28;
+  color: #212121;
+  transform: translateY(-1px);
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ==========================
+   Forms & Inputs
+   ========================== */
+/* Base form: stack groups */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+/* Each group: label + input/select */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.form-group label {
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select {
+  padding: 0.5rem;
+  border: 1px solid #B0BEC5;
+  border-radius: 4px;
+  font-family: 'Open Sans', sans-serif;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Button group: full width on mobile */
+.form-group-button {
+  display: flex;
+  justify-content: flex-start; /* or center if you prefer centering the button */
+}
+.form-group-button button {
+  padding: 0.75rem 1.5rem;
+  font-family: 'Montserrat', sans-serif;
+  background: #FFCA28;
+  color: #212121;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+.form-group-button button:hover {
+  background: #2E7D32;
+  color: #FAFAFA;
+}
+
+/* Desktop: align label and input side by side */
+@media (min-width: 769px) {
+  .form-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .form-group label {
+    width: 140px;  /* adjust as needed based on longest label text */
+    text-align: right;
+    margin-bottom: 0;
+  }
+  .form-group input,
+  .form-group select {
+    flex: 1;
+  }
+  .form-group-button {
+    /* align button under inputs: margin-left equal to label width */
+    margin-left: 140px;
+  }
+  .form-group-button button {
+    width: auto; /* let the button size by its padding/content */
+  }
+}
+
+/* ==========================
+   Hero Section (on homepage or pages using hero)
+   ========================== */
+.hero {
+  position: relative;
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 2s ease-out;
+  color: #FAFAFA;
+  text-shadow: 1px 1px 5px #212121;
+}
+.hero h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5em;
+  margin-bottom: 1rem;
+}
+.hero p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.2em;
+}
+#searchForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+#searchForm input[type="text"],
+#searchForm select,
+#searchForm input[type="number"] {
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Open Sans', sans-serif;
+  flex: 1 1 200px;
+}
+#searchForm button {
+  background: #FFCA28;
+  color: #212121;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  transition: background-color 0.3s;
+}
+#searchForm button:hover {
+  background: #FAFAFA;
+  color: #2E7D32;
+}
+@media (max-width: 768px) {
+  .hero {
+    height: 300px;
+  }
+  .hero h2 {
+    font-size: 1.8em;
+  }
+  /* Mobile: stacked vertically */
+  #searchForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+
+/* ==========================
+   Activity Cards (Search Results)
+   ========================== */
+#activityGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+.activity-card {
+  background-color: #FFFFFF;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.activity-card:hover,
+.activity-card:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.activity-card h3 {
+  margin: 0 0 0.5rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #2E7D32;
+}
+.activity-card p {
+  margin: 0.25rem 0;
+  flex-grow: 1;
+}
+/* If wrapping in <a> */
+.activity-card a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+
+/* ==========================
+   Itinerary Page
+   ========================== */
+.itinerary-day {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.itinerary-day h2 {
+  margin: 0;
+  padding: 0.75rem;
+  background-color: #2E7D32;
+  color: #FAFAFA;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.itinerary-day h2::after {
+  content: '▼';
+  font-size: 0.8rem;
+  transition: transform 0.3s;
+}
+.itinerary-day.collapsed h2::after {
+  transform: rotate(-90deg);
+}
+.itinerary-day ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.75rem 1rem;
+}
+.itinerary-day ul li {
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+/* ==========================
+   Gear List Page
+   ========================== */
+#gearContainer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#gearContainer li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+#gearContainer li label {
+  margin-left: 0.5rem;
+}
+#downloadGearListBtn {
+  margin-top: 1rem;
+}
+
+/* ==========================
+   Activity Detail Page
+   ========================== */
+#activityDetailContainer {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+#activityInfo p {
+  margin: 0.5rem 0;
+}
+/* Map containers */
+#activityMap,
+#map,
+#overviewMap {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-top: 1rem;
+}
+
+/* ==========================
+   Alerts
+   ========================== */
+.alert-list {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 1000;
+  width: 100%;
+}
+.alert-list p {
+  margin: 0;
+  padding: 0.75rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* ==========================
+   Loading Overlay & Spinner
+   ========================== */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+.loading-overlay.hidden {
+  display: none;
+}
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 6px solid #ddd;
+  border-top-color: #2E7D32;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================
+   Back to Top Button
+   ========================== */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: #2E7D32;
+  color: #FAFAFA;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: opacity 0.3s;
+}
+.back-to-top.hidden {
+  display: none;
+}
+.back-to-top:hover {
+  background-color: #FFCA28;
+  color: #212121;
+}
+
+/* ==========================
+   Footer
+   ========================== */
+.site-footer {
+  background-color: #2E7D32;
+  color: #FAFAFA;
+  padding: 1rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+.site-footer a {
+  color: #FFCA28;
+  margin: 0 0.5rem;
+}
+.site-footer a:hover {
+  text-decoration: underline;
+}
+.footer-content p {
+  margin: 0.5rem 0;
+}
+.footer-nav {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+/* ==========================
+   Responsive Adjustments
+   ========================== */
+@media (max-width: 768px) {
+  .site-logo a {
+    font-size: 1.1rem;
+  }
+  .nav-toggle {
+    font-size: 1.4rem;
+  }
+  main {
+    padding: 0 0.75rem;
+  }
+  .activity-card {
+    padding: 0.75rem;
+  }
+  form {
+    flex-direction: column;
+  }
+  #activityGrid {
+    grid-template-columns: 1fr;
+  }
+  .hero {
+    height: 300px;
+  }
+  .hero h2 {
+    font-size: 1.8em;
+  }
+  #searchForm input,
+  #searchForm select,
+  #searchForm button {
+    width: 100%;
+  }
+}
+
+/* ==========================
+   Search Form Adjustments
+   ========================== */
+/* Mobile: stacked vertically */
+#searchForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+/* Desktop: horizontal layout */
+@media (min-width: 769px) {
+  #searchForm {
+    flex-direction: row;
+    align-items: flex-end;
+    max-width: 900px;
+    gap: 1.5em;
+  }
+  #searchForm .form-group {
+    flex: 1 1 0;
+    margin-bottom: 0;
+  }
+  #searchForm .form-group-button {
+    flex: 0 0 auto;
+  }
+  #searchForm input,
+  #searchForm select {
+    width: 100%;
+  }
+}
