@@ -40,49 +40,18 @@
     <!-- Hero Section -->
     <section class="hero" style="background-image: url('images/explorer.webp');">
       <h2>Plan Your Next Outdoor Adventure</h2>
-     <form id="searchForm" class="fade-in">
-  <div class="form-group">
-    <label for="searchInput">City or Activity</label>
-    <input
-      type="text"
-      id="searchInput"
-      name="searchInput"
-      placeholder="Enter a city or activity"
-      required
-    />
-  </div>
-
-  <div class="form-group">
-    <label for="categorySelect">Category</label>
-    <select id="categorySelect" name="categorySelect">
-      <option value="">Any</option>
-      <option value="natural.protected_area">Protected Areas</option>
-      <option value="natural.forest">Forests</option>
-      <option value="tourism.attraction">Attractions</option>
-      <option value="leisure.park">Parks</option>
-      <option value="sport.hiking">Hiking</option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label for="radiusInput">Radius (km)</label>
-    <input
-      type="number"
-      id="radiusInput"
-      name="radiusInput"
-      placeholder="e.g., 25"
-      min="1"
-      max="100"
-      value="25"
-    />
-  </div>
-
-  <div class="form-group form-group-button">
-    <!-- No label needed here, or you can add an empty <label>&nbsp;</label> if you want alignment -->
-    <button type="submit">Search</button>
-  </div>
-</form>
-
+      <form id="searchForm" class="fade-in">
+        <input type="text" id="searchInput" placeholder="Enter a city" required />
+        <select id="categorySelect">
+          <option value="natural.protected_area">Protected Areas</option>
+          <option value="natural.forest">Forests</option>
+          <option value="tourism.attraction">Attractions</option>
+          <option value="leisure.park">Parks</option>
+          <option value="sport.hiking">Hiking</option>
+        </select>
+        <input type="number" id="radiusInput" placeholder="Radius (km)" min="1" max="100" value="25" />
+        <button type="submit">Search</button>
+      </form>
     </section>
 
     <section class="intro">
