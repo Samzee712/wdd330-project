@@ -547,11 +547,10 @@ form {
   margin-top: 2rem;
 }
 .site-footer a {
-  color: #FFCA28;
-  margin: 0 0.5rem;
+  color: #FAFAFA;
 }
 .site-footer a:hover {
-  text-decoration: underline;
+  color: #FFCA28;
 }
 .footer-content p {
   margin: 0.5rem 0;
