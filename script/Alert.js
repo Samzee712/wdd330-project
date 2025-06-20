@@ -1,13 +1,14 @@
 // Alert.js
 export default class Alert {
   /**
-   * @param {string} dataUrl - URL to fetch alerts JSON (e.g. '/data/alerts.json')
+   * @param {string} dataUrl - URL to fetch alerts JSON (e.g. 'data/alerts.json')
    * @param {object} options - optional settings:
    *    position: 'top' or 'bottom' (default 'top')
    *    autoHideDuration: milliseconds to auto-hide all alerts (default 0 = no auto-hide)
    */
   constructor(dataUrl, options = {}) {
-    this.dataUrl = dataUrl;
+    // Remove leading slash if present to ensure relative path works on GitHub Pages
+    this.dataUrl = dataUrl.startsWith('/') ? dataUrl.slice(1) : dataUrl;
     this.options = {
       position: options.position === 'bottom' ? 'bottom' : 'top',
       autoHideDuration: typeof options.autoHideDuration === 'number' && options.autoHideDuration > 0
@@ -38,7 +39,6 @@ export default class Alert {
     // Optionally cache fetched alerts in localStorage
     try {
       const prevCached = localStorage.getItem(this.CACHED_ALERTS_KEY);
-      // You could compare prevCached vs. JSON.stringify(alerts) to detect changes
       localStorage.setItem(this.CACHED_ALERTS_KEY, JSON.stringify(alerts));
     } catch (e) {
       console.warn('Failed to cache alerts data:', e);
@@ -70,14 +70,6 @@ export default class Alert {
     // Build the alert section
     const section = document.createElement('section');
     section.classList.add('alert-list');
-    // Style position (if desired, fixed or relative)
-    // You may adjust styling via CSS; here we prepend under <main>
-    // Optionally you can set fixed positioning:
-    // section.style.position = 'fixed';
-    // section.style.width = '100%';
-    // section.style.zIndex = '1000';
-    // if (this.options.position === 'top') section.style.top = '0';
-    // else section.style.bottom = '0';
 
     // For each new alert, create a <p> element
     newAlerts.forEach(alertObj => {
@@ -89,7 +81,6 @@ export default class Alert {
 
       const p = document.createElement('p');
       p.textContent = message;
-      // Basic inline styles; you can move to CSS classes if preferred
       p.style.backgroundColor = background;
       p.style.color = color;
       p.style.padding = '0.75rem 2rem 0.75rem 1rem';
@@ -112,9 +103,7 @@ export default class Alert {
       closeBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         p.remove();
-        // Mark this alert as shown/dismissed
         this._markAlertAsShown(id);
-        // If no more <p> children, remove the section
         if (section.childElementCount === 0) {
           section.remove();
         }
@@ -146,27 +135,22 @@ export default class Alert {
         main.append(section);
       }
     } else {
-      // Fallback: append to body
       document.body.prepend(section);
     }
   }
 
   /** Compute a stable ID for an alert object */
   _getAlertId(alertObj) {
-    // If alertObj.id exists and is a string/number, use it
     if (alertObj.id !== undefined && alertObj.id !== null) {
       return String(alertObj.id);
     }
-    // Otherwise derive from message + background + color
     const text = (alertObj.message || '') + '|' + (alertObj.background || '') + '|' + (alertObj.color || '');
-    // Simple hash: compute a short hash code
     let hash = 0;
     for (let i = 0; i < text.length; i++) {
       const chr = text.charCodeAt(i);
       hash = ((hash << 5) - hash) + chr;
-      hash |= 0; // Convert to 32-bit int
+      hash |= 0;
     }
-    // Return as string
     return 'alert_' + hash;
   }
 
@@ -189,3 +173,6 @@ export default class Alert {
     }
   }
 }
+
+// Instantiate and render alerts (example usage)
+// new Alert('data/alerts.json').render();

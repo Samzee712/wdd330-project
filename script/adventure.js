@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Render alerts if any
   try {
-    const alertInstance = new Alert('/data/alerts.json');
+    const alertInstance = new Alert('data/alerts.json');
     alertInstance.render();
   } catch (e) {
     console.warn('Alert init failed:', e);
@@ -260,7 +260,7 @@ function renderSearchResults() {
   initNav();
   initBackToTop();
   try {
-    const alertInstance = new Alert('/data/alerts.json');
+    const alertInstance = new Alert('data/alerts.json');
     alertInstance.render();
   } catch {}
 
