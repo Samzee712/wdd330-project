@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('searchCategory', category);
         localStorage.setItem('searchRadius', radiusMeters);
         // Redirect to results page
-        window.location.href = `/search-results.html?q=${encodeURIComponent(searchTerm)}`;
+        window.location.href = `search-results.html?q=${encodeURIComponent(searchTerm)}`;
       } catch (err) {
         console.error('Search failed:', err);
         alert('Search error: ' + err.message);
