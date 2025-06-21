@@ -256,14 +256,6 @@ function computeDistanceMeters(lat1, lon1, lat2, lon2) {
 
 // Render search results and initialize map
 function renderSearchResults() {
-  // Ensure nav and alerts have been initialized
-  initNav();
-  initBackToTop();
-  try {
-    const alertInstance = new Alert('data/alerts.json');
-    alertInstance.render();
-  } catch {}
-
   const stored = localStorage.getItem('searchResults');
   const results = stored ? JSON.parse(stored) : [];
   const grid = document.getElementById('activityGrid');
